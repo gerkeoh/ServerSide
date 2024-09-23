@@ -1,0 +1,22 @@
+<nav>
+    <div class ="site-title">
+        <a href="/"><h1><b>Batman Workshop</b></h1></a>
+        <h3>A Gerard Keohane Site</h3>
+    </div>
+    <ul>
+        <li><a href="/">Home page</a></li>
+        <li><a href="/batmans/create">Book Batman workshop</a></li>
+        <li><a href="/batmans/list">Bookings</a></li>
+        <li><a href="/batmans/delete">Delete a Booking</a></li>
+        <li><a href="/batmans/modify">Modify a Booking</a></li>
+        <li><a href="/report">Report on scheduled Workshops</a></li>
+        <li><a href="/about">About page</a></li>
+        <li><a href="/help">Help page</a></li>
+        <% if(currentUser) { %>
+            <li><a href="/users/logout">Logout</a></li>
+        <% } else { %>
+            <li><a href="/users/login">Login</a></li>
+            <li><a href="/users/register">Register</a></li>
+        <% } %>
+    </ul>
+</nav>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<%- include partials/head %>
+<body>
+    <%- include('./partials/nav.ejs') %>
+        <div class="wrapper">
+        <h1><%= title %></h1>
+        <div class="ra-r"></div>
+            <body>
+    <table class="table table-inverse">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% for(var i=0; i < batmanlist.length; i++) { %>
+                <tr>
+                    <td><%= batmanlist[i].username %></td>
+                    <td><%= batmanlist[i].date %></td>
+                    <td><%= batmanlist[i].time %></td>       
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+
+</body>
+</div>
+</div>
+<% include partials/foot %>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<%- include partials/head %>
+<body>
+    <%- include('./partials/nav') %>
+    <div class="wrapper">
+        <h1><%= title %></h1>
+        <div class="ra-r"></div>
+
+        <div style="margin:0 auto; width:50%; padding:60px">
+            <form action="/batmans/create" method="post">
+                <label>Name:</label>
+                <input type="text" name="username">
+                <br /> <br /> <br /> <br />
+                <label>Password:</label>
+                <input type="text" name="password">
+                <br /> <br /> <br /> <br />
+                <label>Date:</label>
+                <input type="date" name="date" required min="<%= new Date().toLocaleDateString('en-CA') %>">
+                <br /> <br /> <br /> <br/>
+                <label>Time:</label>
+                <input type="time" name="time" required min="09:00" max="18:00">
+                <p>Time options: 09:00 to 18:00</p>
+                <br /> <br /> <br />
+                <label>Card Pin:</label>
+                <input type="text" name="cardpin">
+                <br /> <br /> <br /> <br />
+                <label>Expiry Date:</label>
+                <input type="date" name="expirydate" required min="<%= new Date().toLocaleDateString('en-CA') %>">
+                <br /> <br /> <br /> <br />
+                <label>Security Pin:</label>
+                <input type="text" name="securitypin">
+                <br /> <br /> <br /> <br />
+                <button>Submit</button>
+            </form>
+        </div>
+    </div>
+    <%- include partials/foot %>
+</body>
+</html>

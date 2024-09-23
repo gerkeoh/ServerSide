@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<% include partials/head %>
+<body>
+    <%- include('./partials/nav.ejs') %>
+    <h1><%= title %></h1>
+    <div>
+        <p>Here you can delete your bookings.</p>
+        <% if(batmanlist.length > 0) { %>
+            <form action="/batmans/delete" method="post" id="deleteForm">
+                <table class="table table-inverse">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i=0; i < batmanlist.length; i++) { %>
+                            <tr>
+                                <td><%= batmanlist[i].username %></td>
+                                <td><%= batmanlist[i].date %></td>
+                                <td><%= batmanlist[i].time %></td>
+                                <td>
+                                    <button type="button" class="delete-btn" data-id="<%= batmanlist[i]._id %>">
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </form>
+        <% } else { %>
+            <p>No bookings available for deletion.</p>
+        <% } %>
+    </div>
+    <% include partials/foot %>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+
+            deleteButtons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    // Ask for confirmation before submitting the form
+                    const isConfirmed = confirm('Are you sure you want to delete this booking?');
+
+                    if (isConfirmed) {
+                        const bookingId = this.getAttribute('data-id');
+                        const form = document.getElementById('deleteForm');
+                        const input = document.createElement('input');
+
+                        input.type = 'hidden';
+                        input.name = 'bookingId';
+                        input.value = bookingId;
+
+                        form.appendChild(input);
+                        form.submit();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

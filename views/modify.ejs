@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<% include partials/head %>
+<body>
+    <%- include('./partials/nav.ejs') %>
+    <div class="wrapper">
+        <h1><%= title %></h1>
+        <p>Here you can modify your bookings.</p>
+        <div class="ra-r"></div>
+        <% if (batmanlist.length > 0) { %>
+            <% batmanlist.forEach((batman) => { %>
+                <form action="/batmans/modify" method="post">
+                    <table class="table table-inverse">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input type="text" name="modifiedName<%= batman._id %>" value="<%= batman.username %>">
+                                </td>
+                                <td>
+                                    <input type="date" name="modifiedDate<%= batman._id %>" required min="<%= new Date().toLocaleDateString('en-CA') %>" value="<%= batman.date %>">
+                                </td>
+                                <td>
+                                    <input type="time" name="modifiedTime<%= batman._id %>" required min="09:00" max="18:00" value="<%= batman.time %>">
+                                </td>
+                                <td>
+                                    <input type="hidden" name="bookingId" value="<%= batman._id %>">
+                                    <button type="submit" class="btn btn-primary">Modify</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            <% }); %>
+        <% } else { %>
+            <p>No bookings available for modification.</p>
+        <% } %>
+    </div>
+    <% include partials/foot %>
+</body>
+</html>
